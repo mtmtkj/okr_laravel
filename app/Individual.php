@@ -15,4 +15,14 @@ class Individual extends Model
     {
         return $this->belongsToMany('App\Team');
     }
+
+    public function belongsToTeam(Team $aTeam)
+    {
+        foreach ($this->teams as $team) {
+            if ($team->id === $aTeam->id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
