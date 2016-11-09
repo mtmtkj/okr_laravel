@@ -27,4 +27,12 @@ class ObjectiveController extends Controller
 
         return redirect()->route('team.show', $teamId);
     }
+
+    public function show($id)
+    {
+        $objective = Objective::findOrFail($id);
+        $owner = $objective->evaluatable;
+
+        return view('objective.show')->with(compact('objective', 'owner'));
+    }
 }

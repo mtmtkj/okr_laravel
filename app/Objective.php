@@ -10,6 +10,11 @@ class Objective extends Model
 
     public function evaluatable()
     {
-        $this->morphTo();
+        return $this->morphTo();
+    }
+
+    public function keyResults()
+    {
+        return $this->hasMany('App\KeyResult');
     }
 }

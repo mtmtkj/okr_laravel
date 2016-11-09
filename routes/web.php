@@ -18,8 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::group(['prefix' => 'team/{id}', 'as' => 'team.'], function () {
+Route::group(['prefix' => 'team/{team_id}', 'as' => 'team.'], function () {
     Route::get('/', 'TeamController@show')->name('show');
     Route::get('objective', 'ObjectiveController@create')->name('objective.create');
     Route::post('objective', 'ObjectiveController@store')->name('objective.store');
 });
+Route::get('objective/{id}', 'ObjectiveController@show')->name('objective.show');

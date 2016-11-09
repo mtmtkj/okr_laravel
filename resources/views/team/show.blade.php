@@ -11,7 +11,7 @@
           <ul class="list-group">
           @foreach ($team->objectives as $objective)
             <li class="list-group-item">
-              {{ $objective->subject }}
+              <a href="{{ route('objective.show', $objective->id) }}">{{ $objective->subject }}</a>
             </li>
           @endforeach
           </ul>
