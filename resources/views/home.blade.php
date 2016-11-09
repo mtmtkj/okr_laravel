@@ -17,7 +17,7 @@
         @if (count($teams) > 0)
           <ul class="list-group">
           @foreach ($teams as $team)
-            <li class="list-group-item">{{ $team->name }}</li>
+            <li class="list-group-item"><a href="{{ route('team.show', $team->id) }}">{{ $team->name }}</a></li>
           @endforeach
           </ul>
         @else
