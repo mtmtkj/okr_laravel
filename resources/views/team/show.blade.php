@@ -8,7 +8,7 @@
         <div class="panel-heading">{{ $team->name }}</div>
         <div class="panel-body">
           <p><a href="{{ route('team.objective.create', $team->id) }}">Create a new objective</a></p>
-          <ul class="list-group">
+          <ul class="list-group list-striped">
           @foreach ($team->objectives as $objective)
             <li class="list-group-item">
               <a href="{{ route('objective.show', $objective->id) }}">{{ $objective->subject }}</a>

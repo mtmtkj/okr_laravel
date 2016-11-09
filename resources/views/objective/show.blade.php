@@ -15,7 +15,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Key Results</div>
         <div class="panel-body">
-          <ul class="list-group">
+          <ul class="list-group list-striped">
           @foreach ($objective->keyResults as $keyResult)
             <li class="list-group-item">{{ $keyResult->subject }}</li>
           @endforeach
