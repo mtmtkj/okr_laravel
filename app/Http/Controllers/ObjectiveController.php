@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Team;
 use App\Http\Requests\ObjectiveRequest;
+use App\Team;
+use App\Objective;
 
 class ObjectiveController extends Controller
 {
@@ -16,10 +17,14 @@ class ObjectiveController extends Controller
         return view('team.objective.create')->with(compact('team'));
     }
 
-    public function store(ObjectiveRequest $request)
+    public function store(ObjectiveRequest $request, $teamId)
     {
+        $team = Team::findOrFail($teamId);
         $attrs = $request->except('_token');
+        $objective = new Objective;
+        $objective->fill($attrs);
+        $team->objectives()->save($objective);
 
-        return $attrs;
+        return redirect()->route('team.show', $teamId);
     }
 }

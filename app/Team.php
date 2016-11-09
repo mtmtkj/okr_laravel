@@ -10,4 +10,9 @@ class Team extends Model
     {
         return $this->belongsToMany('App\individual');
     }
+
+    public function objectives()
+    {
+        return $this->morphMany('App\Objective', 'evaluatable');
+    }
 }

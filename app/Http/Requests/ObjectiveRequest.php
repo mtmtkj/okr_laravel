@@ -22,10 +22,6 @@ class ObjectiveRequest extends FormRequest
         if (!$individual->belongsToTeam($team)) {
             return false;
         }
-
-        $this->request->set('team_id', $team->id);
-        $this->request->set('individual_id', $individual->id);
-
         return true;
     }
 
