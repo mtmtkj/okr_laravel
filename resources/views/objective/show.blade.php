@@ -15,6 +15,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Key Results</div>
         <div class="panel-body">
+          <p><a href="{{ route('objective.keyresult.create', $objective->id) }}">Create a new key result</a></p>
           <ul class="list-group list-striped">
           @foreach ($objective->keyResults as $keyResult)
             <li class="list-group-item">{{ $keyResult->subject }}</li>

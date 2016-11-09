@@ -23,4 +23,8 @@ Route::group(['prefix' => 'team/{team_id}', 'as' => 'team.'], function () {
     Route::get('objective', 'ObjectiveController@create')->name('objective.create');
     Route::post('objective', 'ObjectiveController@store')->name('objective.store');
 });
-Route::get('objective/{id}', 'ObjectiveController@show')->name('objective.show');
+Route::group(['prefix' => 'objective/{id}', 'as' => 'objective.'], function () {
+    Route::get('/', 'ObjectiveController@show')->name('show');
+    Route::get('keyresult', 'KeyResultController@create')->name('keyresult.create');
+    Route::post('keyresult', 'KeyResultController@store')->name('keyresult.store');
+});
