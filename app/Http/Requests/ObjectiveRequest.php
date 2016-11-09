@@ -19,10 +19,7 @@ class ObjectiveRequest extends FormRequest
         $team = Team::findOrFail($teamId);
         $individual = Auth::user()->individual;
 
-        if (!$individual->belongsToTeam($team)) {
-            return false;
-        }
-        return true;
+        return $individual->belongsToTeam($team);
     }
 
     /**
