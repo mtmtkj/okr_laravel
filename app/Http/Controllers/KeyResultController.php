@@ -27,4 +27,12 @@ class KeyResultController extends Controller
 
         return redirect()->route('objective.show', $objectiveId);
     }
+
+    public function show($id)
+    {
+        $keyResult = KeyResult::findOrFail($id);
+        $owner = $keyResult->objective->evaluatable;
+
+        return view('keyresult.show')->with(compact('keyResult', 'owner'));
+    }
 }

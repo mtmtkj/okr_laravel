@@ -18,7 +18,7 @@
           <p><a href="{{ route('objective.keyresult.create', $objective->id) }}">Create a new key result</a></p>
           <ul class="list-group list-striped">
           @foreach ($objective->keyResults as $keyResult)
-            <li class="list-group-item">{{ $keyResult->subject }}</li>
+            <li class="list-group-item"><a href="{{ route('keyresult.show', $keyResult->id) }}">{{ $keyResult->subject }}</a></li>
           @endforeach
           </ul>
         </div>

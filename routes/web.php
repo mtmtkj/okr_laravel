@@ -28,3 +28,4 @@ Route::group(['prefix' => 'objective/{id}', 'as' => 'objective.'], function () {
     Route::get('keyresult', 'KeyResultController@create')->name('keyresult.create');
     Route::post('keyresult', 'KeyResultController@store')->name('keyresult.store');
 });
+Route::get('keyresult/{id}', 'KeyResultController@show')->name('keyresult.show');
