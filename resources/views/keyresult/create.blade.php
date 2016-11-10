@@ -17,6 +17,19 @@
             {!! Form::label('description') !!}
             {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
           </div>
+          <div class="form-group">
+            {!! Form::label('target') !!}
+            <div class="row">
+              <div class="col-sm-4">
+                {!! Form::label('value') !!}
+                {!! Form::text('target_value', null, ['class' => 'form-control']) !!}
+              </div>
+              <div class="col-sm-2">
+                {!! Form::label('unit') !!}
+                {!! Form::text('target_unit', null, ['class' => 'form-control']) !!}
+              </div>
+            </div>
+          </div>
         </div>
         <div class="panel-footer">
           {!! Form::submit('Add', ['class' => 'btn btn-primary']) !!}

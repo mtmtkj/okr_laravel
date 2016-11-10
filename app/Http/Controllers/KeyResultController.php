@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\Http\Requests\KeyResultRequest;
 use App\Objective;
 use App\KeyResult;
 
@@ -17,7 +17,7 @@ class KeyResultController extends Controller
         return view('keyresult.create')->with(compact('objective'));
     }
 
-    public function store(Request $request, $objectiveId)
+    public function store(KeyResultRequest $request, $objectiveId)
     {
         $attrs = ['objective_id' => $objectiveId] + $request->except('_token');
 
