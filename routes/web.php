@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('keyresult/{id}', 'KeyResultController@show')->name('keyresult.show');
 
     Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
-        Route::resource('input_periods', 'InputPeriodController');
+        Route::group(['middleware' => ['admin']], function () {
+            Route::resource('input_periods', 'InputPeriodController');
+        });
     });
 });
