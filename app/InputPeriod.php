@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class InputPeriod extends Model
 {
-    public function getEvaluateeTypeAttribute()
+    protected $guarded = ['id'];
+
+    public function getEvaluateeTypeLabelAttribute()
     {
         return Str::ucfirst($this->attributes['evaluatee_type']);
     }

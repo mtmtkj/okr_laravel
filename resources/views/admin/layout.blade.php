@@ -35,5 +35,7 @@
       </nav>
       @yield('content')
     </div>
+    <script src="/js/app.js"></script>
+    @stack('scripts')
   </body>
 </html>
