@@ -17,7 +17,7 @@ class InputPeriodController extends Controller
     {
         $inputPeriods = InputPeriod::all();
 
-        return $inputPeriods;
+        return view('admin.input_period.index')->with(compact('inputPeriods'));
     }
 
     /**
