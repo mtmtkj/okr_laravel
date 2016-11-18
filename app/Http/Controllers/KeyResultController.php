@@ -31,7 +31,7 @@ class KeyResultController extends Controller
     public function show($id)
     {
         $keyResult = KeyResult::findOrFail($id);
-        $owner = $keyResult->objective->evaluatable;
+        $owner = $keyResult->objective->ownable;
 
         return view('keyresult.show')->with(compact('keyResult', 'owner'));
     }

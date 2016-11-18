@@ -31,7 +31,7 @@ class ObjectiveController extends Controller
     public function show($id)
     {
         $objective = Objective::findOrFail($id);
-        $owner = $objective->evaluatable;
+        $owner = $objective->ownable;
 
         return view('objective.show')->with(compact('objective', 'owner'));
     }

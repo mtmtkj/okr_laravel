@@ -13,6 +13,6 @@ class Team extends Model
 
     public function objectives()
     {
-        return $this->morphMany('App\Objective', 'evaluatable');
+        return $this->morphMany('App\Objective', 'ownable');
     }
 }

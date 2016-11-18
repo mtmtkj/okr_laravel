@@ -8,7 +8,7 @@ class Objective extends Model
 {
     protected $guarded = ['id'];
 
-    public function evaluatable()
+    public function ownable()
     {
         return $this->morphTo();
     }
