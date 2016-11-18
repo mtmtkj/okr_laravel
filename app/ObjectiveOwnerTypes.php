@@ -2,7 +2,7 @@
 
 namespace App;
 
-class EvaluateeTypes
+class ObjectiveOwnerTypes
 {
     public static function all()
     {

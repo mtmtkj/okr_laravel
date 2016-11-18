@@ -11,9 +11,9 @@ class InputPeriod extends Model
     protected $guarded = ['id'];
     protected $dates = ['start_at', 'end_at', 'created_at', 'updated_at'];
 
-    public function getEvaluateeTypeLabelAttribute()
+    public function getObjectiveOwnerTypeLabelAttribute()
     {
-        return Str::ucfirst($this->attributes['evaluatee_type']);
+        return Str::ucfirst($this->attributes['objective_owner_type']);
     }
 
     public function scopeCurrent($query)

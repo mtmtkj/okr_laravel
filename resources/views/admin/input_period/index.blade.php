@@ -13,7 +13,7 @@
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Evaluatee Type</th>
+                <th>Objective Owner Type</th>
                 <th>Start At</th>
                 <th>End At</th>
                 <th>&nbsp;</th>
@@ -23,7 +23,7 @@
             @foreach ($inputPeriods as $inputPeriod)
               <tr>
                 <td>{{ $inputPeriod->name }}</td>
-                <td>{{ $inputPeriod->evaluatee_type_label }}</td>
+                <td>{{ $inputPeriod->objective_owner_type_label }}</td>
                 <td>{{ $inputPeriod->start_at }}</td>
                 <td>{{ $inputPeriod->end_at }}</td>
                 <td>

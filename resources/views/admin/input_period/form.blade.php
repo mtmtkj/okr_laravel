@@ -15,8 +15,8 @@
                 <td>{!! Form::text('name', $inputPeriod->name, ['class' => 'form-control']) !!}</td>
               </tr>
               <tr>
-                <th>{!! Form::label('evaluatee_type') !!}</th>
-                <td>{!! Form::select('evaluatee_type', $evaluateeTypes, $inputPeriod->evaluatee_type, ['class' => 'form-control']) !!}</td>
+                <th>{!! Form::label('objective_owner_type') !!}</th>
+                <td>{!! Form::select('objective_owner_type', $objectiveOwnerTypes, $inputPeriod->objective_owner_type, ['class' => 'form-control']) !!}</td>
               </tr>
               <tr>
                 <th>{!! Form::label('start_at') !!}</th>

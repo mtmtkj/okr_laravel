@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\InputPeriodRequest;
 use App\InputPeriod;
-use App\EvaluateeTypes;
+use App\ObjectiveOwnerTypes;
 
 class InputPeriodController extends Controller
 {
@@ -30,12 +30,12 @@ class InputPeriodController extends Controller
     public function create()
     {
         $inputPeriod = new InputPeriod();
-        $evaluateeTypes = [0 => '--- Choose one ---'] + EvaluateeTypes::all();
+        $objectiveOwnerTypes = [0 => '--- Choose one ---'] + ObjectiveOwnerTypes::all();
 
-        return $this->form($inputPeriod, $evaluateeTypes);
+        return $this->form($inputPeriod, $objectiveOwnerTypes);
     }
 
-    public function form(InputPeriod $inputPeriod, array $evaluateeTypes)
+    public function form(InputPeriod $inputPeriod, array $objectiveOwnerTypes)
     {
         $edit = ($inputPeriod->id !== null);
         $title = ($edit) ? 'Edit' : 'Create';
@@ -43,7 +43,7 @@ class InputPeriodController extends Controller
         $actionUrl = ($edit) ? route('admin.input_periods.update', $inputPeriod->id) : route('admin.input_periods.store');
         $btnSaveLabel = ($edit) ? 'Update' : 'Create';
 
-        return view('admin.input_period.form')->with(compact('inputPeriod', 'evaluateeTypes', 'title', 'actionMethod', 'actionUrl', 'btnSaveLabel'));
+        return view('admin.input_period.form')->with(compact('inputPeriod', 'objectiveOwnerTypes', 'title', 'actionMethod', 'actionUrl', 'btnSaveLabel'));
     }
 
     /**
@@ -80,9 +80,9 @@ class InputPeriodController extends Controller
     public function edit($id)
     {
         $inputPeriod = InputPeriod::findOrFail($id);
-        $evaluateeTypes = [0 => '--- Choose one ---'] + EvaluateeTypes::all();
+        $objectiveOwnerTypes = [0 => '--- Choose one ---'] + ObjectiveOwnerTypes::all();
 
-        return $this->form($inputPeriod, $evaluateeTypes);
+        return $this->form($inputPeriod, $objectiveOwnerTypes);
     }
 
     /**
