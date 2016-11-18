@@ -14,20 +14,20 @@ class KeyResult extends Model
         return $this->belongsTo('App\Objective');
     }
 
-    public function fulfilment_histories()
+    public function fulfillment_progresses()
     {
-        return $this->hasMany('App\FulfilmentHistory');
+        return $this->hasMany('App\FulfillmentProgress');
     }
 
-    public function currentFulfilmentPercentage()
+    public function currentFulfillmentPercentage()
     {
         if ($this->fulfilled != null) {
             return $this->fulfilled;
         }
-        $relation = $this->hasMany('App\FulfilmentHistory');
-        $fulfilmentHistory = $relation->getRelated();
+        $relation = $this->hasMany('App\FulfillmentProgress');
+        $fulfillmentProgress = $relation->getRelated();
 
-        $fulfilled = $fulfilmentHistory->currentFulfilment($this);
+        $fulfilled = $fulfillmentProgress->currentFulfillment($this);
         $this->fulfilled = round($fulfilled / $this->target_value * 100, 1);
 
         return $this->fulfilled;

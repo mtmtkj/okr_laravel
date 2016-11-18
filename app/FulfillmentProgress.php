@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FulfilmentHistory extends Model
+class FulfillmentProgress extends Model
 {
-    public function currentFulfilment(KeyResult $keyResult)
+    public function currentFulfillment(KeyResult $keyResult)
     {
         return $this->where('key_result_id', $keyResult->id)->sum('fulfilled_value');
     }

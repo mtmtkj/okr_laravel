@@ -22,21 +22,21 @@
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-heading"><h3>Fulfilment</h3></div>
+        <div class="panel-heading"><h3>Fulfillment</h3></div>
         <div class="panel-body">
           <h4>Target</h4>
           {{ $keyResult->target_value }} {{ $keyResult->target_unit }}
-          <h4>Fulfilment</h4>
+          <h4>Fulfillment</h4>
           <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{ $keyResult->currentFulfilmentPercentage() }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $keyResult->currentFulfilmentPercentage() }}%;">
-              {{ $keyResult->currentFulfilmentPercentage() }}%
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{ $keyResult->currentFulfillmentPercentage() }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $keyResult->currentFulfillmentPercentage() }}%;">
+              {{ $keyResult->currentFulfillmentPercentage() }}%
             </div>
           </div>
 
-          <h4>Records</h4>
+          <h4>Progress</h4>
           <ul>
-          @foreach ($keyResult->fulfilment_histories as $history)
-            <li>{{ $history->created_at }} {{ $history->fulfilled_value }} {{ $keyResult->target_unit }}</li>
+          @foreach ($keyResult->fulfillment_progresses as $progress)
+            <li>{{ $progress->created_at }} {{ $progress->fulfilled_value }} {{ $keyResult->target_unit }}</li>
           @endforeach
           </ul>
         </div>
