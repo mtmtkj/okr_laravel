@@ -17,7 +17,7 @@ class GuidePartialComposer
 
     public function compose(View $view)
     {
-        $currentInputPeriod = $this->inputPeriod->current()->firstOrNew([]);
+        $currentInputPeriod = $this->inputPeriod->currentOne();
         $alertLevel = $currentInputPeriod->getAlertLevel(Carbon::now());
 
         $view->with(compact('currentInputPeriod', 'alertLevel'));
