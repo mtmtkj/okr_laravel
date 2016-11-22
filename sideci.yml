@@ -1,0 +1,8 @@
+linter:
+  code_sniffer:
+    options:
+      standard: PSR2
+      dir: app/
+  phpmd:
+    options:
+      rule: cleancode,codesize,controversial,design,naming,unusedcode
