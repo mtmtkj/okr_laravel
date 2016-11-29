@@ -2,10 +2,12 @@
 
 namespace App\Test;
 
+use Mockery;
 use Carbon\Carbon;
 use App\InputPeriod;
+use App\Services\Timeline;
 
-class InputPeriodTest extends TestCase
+class TimelineTest extends TestCase
 {
     /**
     * @dataProvider getDataForTestGetAlertLevel
@@ -19,7 +21,11 @@ class InputPeriodTest extends TestCase
         $inputPeriod->start_at = $now->copy()->subDay();
         $inputPeriod->end_at = $now->copy()->addHours($diff);
 
-        $level = $inputPeriod->getAlertLevel($now);
+        $mockInputPeriod = Mockery::mock('App\InputPeriod')->makePartial();
+        $mockInputPeriod->shouldReceive('currentOne')->andReturn($inputPeriod);
+
+        $timeline = new Timeline($mockInputPeriod);
+        $level = $timeline->getAlertLevel();
         $this->assertEquals($expectedLevel, $level);
     }
 

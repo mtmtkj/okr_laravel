@@ -4,22 +4,23 @@ namespace App\Http\ViewComposers;
 
 use Carbon\Carbon;
 use Illuminate\View\View;
+use App\Services\Timeline;
 use App\InputPeriod;
 
 class GuidePartialComposer
 {
-    private $inputPeriod;
+    private $timeline;
 
-    public function __construct(InputPeriod $inputPeriod)
+    public function __construct(Timeline $timeline)
     {
-        $this->inputPeriod = $inputPeriod;
+        $this->timeline = $timeline;
     }
 
     public function compose(View $view)
     {
-        $currentInputPeriod = $this->inputPeriod->currentOne();
-        $alertLevel = $currentInputPeriod->getAlertLevel(Carbon::now());
-
-        $view->with(compact('currentInputPeriod', 'alertLevel'));
+        $view->with([
+            'timeline' => $this->timeline,
+            'currentInputPeriod' => $this->timeline->currentInputPeriod(),
+        ]);
     }
 }

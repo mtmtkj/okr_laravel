@@ -54,23 +54,8 @@ class InputPeriod extends Model
         return $query->where('start_at', '<', date('Y-m-d H:i:s'));
     }
 
-    public function getAlertLevel(Carbon $date)
+    public function isEmpty()
     {
-        if (!$this->id) {
-            return '';
-        }
-
-        $levels = [
-            ['threashold' => 168, 'label' => 'info'],
-            ['threashold' => 72, 'label' => 'warning'],
-        ];
-
-        $diff = $date->diffInHours($this->end_at);
-        foreach ($levels as $level) {
-            if ($diff >= $level['threashold']) {
-                return $level['label'];
-            }
-        }
-        return 'danger';
+        return ($this->id === null);
     }
 }

@@ -1,6 +1,6 @@
 <div class="container">
-  @if ($currentInputPeriod->name)
-  <div class="alert alert-{{ $alertLevel }}">
+  @if ($timeline->canInput())
+  <div class="alert alert-{{ $timeline->getAlertLevel() }}">
     ただいま{{ $currentInputPeriod->name }}の入力期間です ({{ $currentInputPeriod->end_at->format('Y-m-d H:i:s') }}まで！)
   </div>
   @else
