@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Individual;
+use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
