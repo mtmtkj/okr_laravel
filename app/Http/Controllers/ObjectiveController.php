@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests\ObjectiveRequest;
 use App\Team;
 use App\Objective;
