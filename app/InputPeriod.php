@@ -6,6 +6,7 @@ use Cache;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class InputPeriod extends Model
 {
@@ -34,11 +35,21 @@ class InputPeriod extends Model
         }
     }
 
+    /**
+     * Objective Owner の値に対するラベル (先頭のみ大文字にしたもの) を返す
+     *
+     * @return string
+     */
     public function getObjectiveOwnerTypeLabelAttribute()
     {
         return Str::ucfirst($this->attributes['objective_owner_type']);
     }
 
+    /**
+     * 現在の InputPeriod を返す
+     *
+     * @return InputPeriod
+     */
     public function currentOne()
     {
         $cacheKey = 'InputPeriod.current';
@@ -49,11 +60,23 @@ class InputPeriod extends Model
         });
     }
 
-    public function scopeCurrent($query)
+    /**
+     * 現在の InputPeriod に絞り込む
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeCurrent(Builder $query)
     {
         return $query->where('start_at', '<', date('Y-m-d H:i:s'));
     }
 
+    /**
+     * 期限までの残り時間に応じて、info|warning|danger のいずれかを返す
+     *
+     * @param \Carbon\Carbon $date
+     * @return string
+     */
     public function getAlertLevel(Carbon $date)
     {
         if (!$this->id) {
