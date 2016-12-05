@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests\KeyResultRequest;
 use App\Objective;
 use App\KeyResult;
