@@ -12,7 +12,7 @@ class ObjectiveController extends Controller
      * Team に紐付いた Objective を作成するフォームを表示する
      *
      * @param int $teamId Objective に紐付ける Team の ID
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function create($teamId)
     {
@@ -43,7 +43,7 @@ class ObjectiveController extends Controller
      * Objective を表示する
      *
      * @param int $id Objective の ID
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {

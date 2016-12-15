@@ -12,7 +12,7 @@ class KeyResultController extends Controller
      * Objective に紐付いた KeyResult を作成するフォームを表示する
      *
      * @param int $objectiveId KeyResult に紐付ける Objective の ID
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function create($objectiveId)
     {
@@ -43,7 +43,7 @@ class KeyResultController extends Controller
      * KeyResult を表示する
      *
      * @param int $id KeyResult の ID
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {

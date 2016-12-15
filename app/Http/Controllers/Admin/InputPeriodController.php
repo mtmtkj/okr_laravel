@@ -13,7 +13,7 @@ class InputPeriodController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -25,7 +25,7 @@ class InputPeriodController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -40,7 +40,7 @@ class InputPeriodController extends Controller
      *
      * @param InputPeriod $inputPeriod
      * @param array $objectiveOwnerTypes
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function form(InputPeriod $inputPeriod, array $objectiveOwnerTypes)
     {
@@ -72,7 +72,7 @@ class InputPeriodController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {
@@ -83,7 +83,7 @@ class InputPeriodController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
