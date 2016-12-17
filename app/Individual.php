@@ -31,6 +31,7 @@ class Individual extends Model
     /**
      * Individual が指定された Team に属しているかどうかを返す
      *
+     * @param Team $aTeam
      * @return boolean
      */
     public function belongsToTeam(Team $aTeam)
