@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Team に紐付く Individual のリストを返す
+     * Team に紐付く Individual を返す
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

@@ -9,7 +9,7 @@ class Individual extends Model
     protected $guarded = ['id'];
 
     /**
-     * Individual に紐付く User を取得する
+     * Individual に紐付く User を返す
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
