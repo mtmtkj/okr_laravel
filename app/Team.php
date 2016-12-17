@@ -13,7 +13,7 @@ class Team extends Model
      */
     public function individuals()
     {
-        return $this->belongsToMany('App\individual');
+        return $this->belongsToMany('App\Individual');
     }
 
     /**
