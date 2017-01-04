@@ -1,0 +1,16 @@
+@startuml{images/class_sample.png}
+title <size:18> クラス図 のサンプル </size>
+class Canvas
+abstract Figure {
+    #{static} const size_t ParseBufferSize = 256
+    +{abstract} size_t getPointsNum()
+    +{static} Figure *ParseString(const char *str)
+}
+
+Figure "0..*" o- "1" Canvas : 集約
+
+Figure <|-- Rect : 汎化
+Figure <|-- Polygon
+Rect <|-- Ellipse
+
+@enduml

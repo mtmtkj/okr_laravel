@@ -10,11 +10,19 @@ class GuidePartialComposer
 {
     private $inputPeriod;
 
+    /**
+     * @param InputPeriod $inputPeriod
+     */
     public function __construct(InputPeriod $inputPeriod)
     {
         $this->inputPeriod = $inputPeriod;
     }
 
+    /**
+     * $view に対してテンプレート変数をセットする
+     *
+     * @param View $view
+     */
     public function compose(View $view)
     {
         $currentInputPeriod = $this->inputPeriod->currentOne();

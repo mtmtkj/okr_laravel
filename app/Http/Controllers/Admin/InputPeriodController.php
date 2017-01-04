@@ -13,7 +13,7 @@ class InputPeriodController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -25,7 +25,7 @@ class InputPeriodController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -35,6 +35,13 @@ class InputPeriodController extends Controller
         return $this->form($inputPeriod, $objectiveOwnerTypes);
     }
 
+    /**
+     * フォームを表示する
+     *
+     * @param InputPeriod $inputPeriod
+     * @param array $objectiveOwnerTypes
+     * @return \Illuminate\Contracts\View\View
+     */
     public function form(InputPeriod $inputPeriod, array $objectiveOwnerTypes)
     {
         $edit = ($inputPeriod->id !== null);
@@ -57,6 +64,7 @@ class InputPeriodController extends Controller
         $attrs = $request->data();
         $inputPeriod = InputPeriod::create($attrs);
 
+        // TODO 一覧へリダイレクト
         return $inputPeriod;
     }
 
@@ -64,7 +72,7 @@ class InputPeriodController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {
@@ -75,7 +83,7 @@ class InputPeriodController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -90,7 +98,7 @@ class InputPeriodController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(InputPeriodRequest $request, $id)
     {
@@ -106,7 +114,7 @@ class InputPeriodController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
