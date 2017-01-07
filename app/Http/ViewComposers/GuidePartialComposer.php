@@ -3,24 +3,32 @@
 namespace App\Http\ViewComposers;
 
 use Carbon\Carbon;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use App\Services\Timeline;
 use App\InputPeriod;
 
 class GuidePartialComposer
 {
+    /**
+     * @var \App\Timeline
+     */
     private $timeline;
 
+    /**
+     * @param \App\Timeline
+     */
     public function __construct(Timeline $timeline)
     {
         $this->timeline = $timeline;
     }
 
+    /**
+     * @param \Illuminate\Contracts\View\View
+     */
     public function compose(View $view)
     {
         $view->with([
-            'timeline' => $this->timeline,
-            'currentInputPeriod' => $this->timeline->currentInputPeriod(),
+            'currentPeriod' => $this->timeline->currentPeriod(),
         ]);
     }
 }

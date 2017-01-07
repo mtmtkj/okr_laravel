@@ -2,47 +2,48 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
+use Cache;
 use App\InputPeriod;
+use App\OutsideOfPeriod;
 
 class Timeline
 {
     private $inputPeriod;
+    protected static $cacheKeys = ['Timeline.currentPeriod'];
 
     public function __construct(InputPeriod $inputPeriod)
     {
         $this->inputPeriod = $inputPeriod;
     }
 
+    public static function clearCache()
+    {
+        foreach (static::$cacheKeys as $key) {
+            Cache::forget($key);
+        }
+    }
+
+    public function currentPeriod()
+    {
+        $cacheKey = 'Timeline.currentPeriod';
+        return Cache::get($cacheKey, function () use ($cacheKey) {
+            $current = $this->currentPeriodImpl();
+            Cache::forever($cacheKey, $current);
+            return $current;
+        });
+    }
+
+    protected function currentPeriodImpl()
+    {
+        $inputPeriod = $this->inputPeriod->current()->first();
+        if ($inputPeriod === null) {
+            return new OutsideOfPeriod();
+        }
+        return $inputPeriod;
+    }
+
     public function canInput()
     {
-        return !$this->currentInputPeriod()->isEmpty();
-    }
-
-    public function currentInputPeriod()
-    {
-        return $this->inputPeriod->currentOne();
-    }
-
-    public function getAlertLevel()
-    {
-        if (!$this->canInput()) {
-            return '';
-        }
-
-        $levels = [
-            ['threashold' => 168, 'label' => 'info'],
-            ['threashold' => 72, 'label' => 'warning'],
-        ];
-
-        $now = Carbon::now();
-        $currentPeriod = $this->currentInputPeriod();
-        $diff = $now->diffInHours($currentPeriod->end_at);
-        foreach ($levels as $level) {
-            if ($diff >= $level['threashold']) {
-                return $level['label'];
-            }
-        }
-        return 'danger';
+        return $this->currentInputPeriod()->canInput();
     }
 }
