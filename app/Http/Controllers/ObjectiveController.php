@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests\ObjectiveRequest;
 use App\Team;
 use App\Objective;
 
 class ObjectiveController extends Controller
 {
+    /**
+     * Team に紐付いた Objective を作成するフォームを表示する
+     *
+     * @param int $teamId Objective に紐付ける Team の ID
+     * @return \Illuminate\Contracts\View\View
+     */
     public function create($teamId)
     {
         $team = Team::findOrFail($teamId);
@@ -17,6 +21,13 @@ class ObjectiveController extends Controller
         return view('team.objective.create')->with(compact('team'));
     }
 
+    /**
+     * Objective を保存する
+     *
+     * @param ObjectiveRequest $request Objective の属性を持つ FormRequest
+     * @param int $teamId Objective に紐付ける Team の ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(ObjectiveRequest $request, $teamId)
     {
         $team = Team::findOrFail($teamId);
@@ -28,6 +39,12 @@ class ObjectiveController extends Controller
         return redirect()->route('team.show', $teamId);
     }
 
+    /**
+     * Objective を表示する
+     *
+     * @param int $id Objective の ID
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show($id)
     {
         $objective = Objective::findOrFail($id);

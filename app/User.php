@@ -27,8 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Team に紐付く Individual を返す
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function individual()
     {
-        return $this->hasOne('App\individual');
+        return $this->hasOne('App\Individual');
     }
 }

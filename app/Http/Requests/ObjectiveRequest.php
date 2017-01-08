@@ -15,7 +15,7 @@ class ObjectiveRequest extends FormRequest
      */
     public function authorize()
     {
-        $teamId = $this->route('id');
+        $teamId = $this->route('team_id');
         $team = Team::findOrFail($teamId);
         $individual = Auth::user()->individual;
 
