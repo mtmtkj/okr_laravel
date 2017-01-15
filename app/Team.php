@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
+    protected $guarded = ['id'];
+
     /**
      * Team に紐付く Individual のリストを返す
      *
@@ -13,7 +15,7 @@ class Team extends Model
      */
     public function individuals()
     {
-        return $this->belongsToMany('App\Individual');
+        return $this->belongsToMany('App\Individual')->with('user');
     }
 
     /**
