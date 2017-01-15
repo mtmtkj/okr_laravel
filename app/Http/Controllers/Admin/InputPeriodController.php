@@ -64,19 +64,7 @@ class InputPeriodController extends Controller
         $attrs = $request->data();
         $inputPeriod = InputPeriod::create($attrs);
 
-        // TODO 一覧へリダイレクト
-        return $inputPeriod;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('admin.input_periods.index');
     }
 
     /**
