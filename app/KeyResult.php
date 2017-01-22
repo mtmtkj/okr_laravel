@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class KeyResult extends Model
 {
@@ -50,5 +51,14 @@ class KeyResult extends Model
         $this->fulfilled = round($fulfilled / $this->target_value * 100, 1);
 
         return $this->fulfilled;
+    }
+
+    public function scopeBelongsToTeamsOfIndividual(Builder $query, Individual $individual)
+    {
+        return $query->whereHas('objective', function ($query) use ($individual) {
+            $query->where('ownable_type', 'App\Team')->whereIn('ownable_id', $individual->teams->map(function ($team) {
+                return $team->id;
+            }));
+        });
     }
 }

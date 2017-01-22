@@ -11,3 +11,9 @@
 .list-striped > li:nth-of-type(odd) {
   background-color: $list-bg-accent;
 }
+
+.content-home {
+  .add-okr-link {
+    margin-left: 1.0em;
+  }
+}

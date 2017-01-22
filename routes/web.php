@@ -18,7 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', 'HomeController@index');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('objective', 'IndividualObjectiveController@create')->name('objective.create');
+    Route::post('objective', 'IndividualObjectiveController@store')->name('objective.store');
     Route::group(['prefix' => 'team/{team_id}', 'as' => 'team.'], function () {
         Route::get('/', 'TeamController@show')->name('show');
         Route::get('objective', 'ObjectiveController@create')->name('objective.create');

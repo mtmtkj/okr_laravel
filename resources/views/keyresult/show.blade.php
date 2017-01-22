@@ -7,17 +7,18 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
-            <h3 class="col-sm-8">Subject: {{ $keyResult->subject }}</h3>
+            <div class="col-sm-8">
+              <h3>Key Result: {{ $keyResult->subject }}</h3>
+              <div class="description">
+                {{ $keyResult->description }}
+              </div>
+            </div>
             <div class="col-sm-4">Owner: {{ $owner->name }}</div>
           </div>
         </div>
         <div class="panel-body">
-          <h4>Description</h4>
-          {{ $keyResult->description }}
-
           <h4>Objective</h4>
           {{ $keyResult->objective->subject }}
-
         </div>
       </div>
 

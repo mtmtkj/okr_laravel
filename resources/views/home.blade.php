@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container content-home">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
@@ -12,7 +12,7 @@
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-heading">Your OKR</div>
+        <div class="panel-heading">Your OKR <a class="add-okr-link" href="{{ route('objective.create') }}"><i class="glyphicon glyphicon-plus"></i></a></div>
         <div class="panel-body">
           <ul class="list-group">
           @foreach ($keyResults as $keyResult)
@@ -27,7 +27,6 @@
                 <div class="col-md-3">
                   <div class="progress">
                     <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{ $keyResult->currentFulfillmentPercentage() }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $keyResult->currentFulfillmentPercentage() }}%;">
-                      {{-- {{ $keyResult->currentFulfillmentPercentage() }}% --}}
                     </div>
                   </div>
                 </div>

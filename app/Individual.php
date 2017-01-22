@@ -20,19 +20,10 @@ class Individual extends Model
     }
 
     /**
-    * Individual に紐付く Objective 経由 で、KeyResult のリストを返す
-    */
-    public function keyResults()
-    {
-        $keyResults = [];
-        foreach ($this->objectives as $objective) {
-            foreach ($objective->keyResults as $keyResult) {
-                $keyResults[] = $keyResult;
-            }
-        }
-        return $keyResults;
-    }
-
+     * Individual に紐付く Objective と KeyResult のリストを返す
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function objectives()
     {
         return $this->morphMany('App\Objective', 'ownable')->with('keyResults');
@@ -72,5 +63,22 @@ class Individual extends Model
     public function getNameAttribute()
     {
         return $this->user->name;
+    }
+
+    /**
+     * Individual に紐付く Objective 経由 で、KeyResult のリストを返す
+     *
+     * @return array
+     */
+    public function keyResults()
+    {
+        $keyResults = [];
+        foreach ($this->objectives as $objective) {
+            foreach ($objective->keyResults as $keyResult) {
+                $keyResult->objective = $objective;
+                $keyResults[] = $keyResult;
+            }
+        }
+        return $keyResults;
     }
 }
