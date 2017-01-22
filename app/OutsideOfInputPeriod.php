@@ -2,7 +2,7 @@
 
 namespace App;
 
-class OutsideOfPeriod implements Period
+class OutsideOfInputPeriod implements Period
 {
     public function canInput()
     {

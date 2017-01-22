@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Cache;
 use App\InputPeriod;
-use App\OutsideOfPeriod;
+use App\OutsideOfInputPeriod;
 
 class Timeline
 {
@@ -37,7 +37,7 @@ class Timeline
     {
         $inputPeriod = $this->inputPeriod->current()->first();
         if ($inputPeriod === null) {
-            return new OutsideOfPeriod();
+            return new OutsideOfInputPeriod();
         }
         return $inputPeriod;
     }
