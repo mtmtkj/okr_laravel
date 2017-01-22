@@ -40,7 +40,7 @@ class KeyResult extends Model
      */
     public function currentFulfillmentPercentage()
     {
-        if ($this->fulfilled != null) {
+        if ($this->fulfilled !== null) {
             return $this->fulfilled;
         }
         $relation = $this->hasMany('App\FulfillmentProgress');
