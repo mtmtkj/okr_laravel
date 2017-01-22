@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Individual extends Model
 {
@@ -16,6 +17,25 @@ class Individual extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    /**
+    * Individual に紐付く Objective 経由 で、KeyResult のリストを返す
+    */
+    public function keyResults()
+    {
+        $keyResults = [];
+        foreach ($this->objectives as $objective) {
+            foreach ($objective->keyResults as $keyResult) {
+                $keyResults[] = $keyResult;
+            }
+        }
+        return $keyResults;
+    }
+
+    public function objectives()
+    {
+        return $this->morphMany('App\Objective', 'ownable')->with('keyResults');
     }
 
     /**
