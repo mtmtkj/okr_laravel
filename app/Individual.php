@@ -43,4 +43,14 @@ class Individual extends Model
         }
         return false;
     }
+
+    /**
+     * 名前はUserモデルにあるので委譲する
+     *
+     * @return string
+     */
+    public function getNameAttribute()
+    {
+        return $this->user->name;
+    }
 }
