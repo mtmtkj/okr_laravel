@@ -9,8 +9,16 @@ interface Period
      * @return string
      */
     public function guideMessage(): string;
+
     /**
      * @return \App\AlertLevel
      */
     public function alertLevel(): AlertLevel;
+
+    /**
+     * 入力可能かどうかを返す
+     *
+     * @return boolean
+     */
+    public function canInput(): boolean;
 }

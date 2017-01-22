@@ -8,14 +8,27 @@ use App\OutsideOfInputPeriod;
 
 class Timeline
 {
-    private $inputPeriod;
+    /**
+     * @var  InputPeriod  ORM
+     */
+    private $inputPeriodORM;
+
+    /**
+     * @var  array  キャッシュをクリアするために使う
+     */
     protected static $cacheKeys = ['Timeline.currentPeriod'];
 
-    public function __construct(InputPeriod $inputPeriod)
+    /**
+     * @param  InputPeriod  $inputPeriodORM
+     */
+    public function __construct(InputPeriod $inputPeriodORM)
     {
-        $this->inputPeriod = $inputPeriod;
+        $this->inputPeriodORM = $inputPeriodORM;
     }
 
+    /**
+     * キャッシュをクリアする
+     */
     public static function clearCache()
     {
         foreach (static::$cacheKeys as $key) {
@@ -23,6 +36,11 @@ class Timeline
         }
     }
 
+    /**
+     * 現在の期間を返す (チームの入力期間、個人の入力期間、入力期間外、etc.)
+     *
+     * @return Period
+     */
     public function currentPeriod()
     {
         $cacheKey = 'Timeline.currentPeriod';
@@ -33,15 +51,25 @@ class Timeline
         });
     }
 
+    /**
+     * 入力期間内であれば InputPeriod を返し、期間外であれば OutsideOfInputPeriod を返す
+     *
+     * @return Period
+     */
     protected function currentPeriodImpl()
     {
-        $inputPeriod = $this->inputPeriod->current()->first();
+        $inputPeriod = $this->inputPeriodORM->current()->first();
         if ($inputPeriod === null) {
             return new OutsideOfInputPeriod();
         }
         return $inputPeriod;
     }
 
+    /**
+     * 入力可能かどうかを返す (現在の期間に対し委譲する)
+     *
+     * @return boolean
+     */
     public function canInput()
     {
         return $this->currentInputPeriod()->canInput();

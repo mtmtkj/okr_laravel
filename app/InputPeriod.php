@@ -48,7 +48,7 @@ class InputPeriod extends Model implements Period
     /**
      * @return boolean
      */
-    public function canInput()
+    public function canInput(): boolean
     {
         return ($this->id !== null);
     }
