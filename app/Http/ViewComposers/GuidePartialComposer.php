@@ -3,31 +3,32 @@
 namespace App\Http\ViewComposers;
 
 use Carbon\Carbon;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
+use App\Services\Timeline;
 use App\InputPeriod;
 
 class GuidePartialComposer
 {
-    private $inputPeriod;
+    /**
+     * @var \App\Timeline
+     */
+    private $timeline;
 
     /**
-     * @param InputPeriod $inputPeriod
+     * @param \App\Timeline
      */
-    public function __construct(InputPeriod $inputPeriod)
+    public function __construct(Timeline $timeline)
     {
-        $this->inputPeriod = $inputPeriod;
+        $this->timeline = $timeline;
     }
 
     /**
-     * $view に対してテンプレート変数をセットする
-     *
-     * @param View $view
+     * @param \Illuminate\Contracts\View\View
      */
     public function compose(View $view)
     {
-        $currentInputPeriod = $this->inputPeriod->currentOne();
-        $alertLevel = $currentInputPeriod->getAlertLevel(Carbon::now());
-
-        $view->with(compact('currentInputPeriod', 'alertLevel'));
+        $view->with([
+            'currentPeriod' => $this->timeline->currentPeriod(),
+        ]);
     }
 }

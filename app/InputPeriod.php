@@ -6,13 +6,12 @@ use Cache;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
+use App\Services\Timeline;
 
-class InputPeriod extends Model
+class InputPeriod extends Model implements Period
 {
     protected $guarded = ['id'];
     protected $dates = ['start_at', 'end_at', 'created_at', 'updated_at'];
-    protected static $cacheKeys = ['InputPeriod.current'];
 
     protected static function boot()
     {
@@ -24,20 +23,11 @@ class InputPeriod extends Model
     private static function savedListener()
     {
         return function () {
-            static::clearCache();
+            Timeline::clearCache();
         };
     }
 
-    private static function clearCache()
-    {
-        foreach (static::$cacheKeys as $key) {
-            Cache::forget($key);
-        }
-    }
-
     /**
-     * Objective Owner の値に対するラベル (先頭のみ大文字にしたもの) を返す
-     *
      * @return string
      */
     public function getObjectiveOwnerTypeLabelAttribute()
@@ -46,54 +36,63 @@ class InputPeriod extends Model
     }
 
     /**
-     * 現在の InputPeriod を返す
-     *
-     * @return InputPeriod
-     */
-    public function currentOne()
-    {
-        $cacheKey = 'InputPeriod.current';
-        return Cache::get($cacheKey, function () use ($cacheKey) {
-            $current = $this->current()->firstOrNew([]);
-            Cache::forever($cacheKey, $current);
-            return $current;
-        });
-    }
-
-    /**
-     * 現在の InputPeriod に絞り込む
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeCurrent(Builder $query)
+    public function scopeCurrent($query)
     {
-        return $query->where('start_at', '<', date('Y-m-d H:i:s'));
+        $now = date('Y-m-d H:i:s');
+        return $query->where('start_at', '<', $now)
+            ->where('end_at', '>', $now);
     }
 
     /**
-     * 期限までの残り時間に応じて、info|warning|danger のいずれかを返す
-     *
-     * @param \Carbon\Carbon $date
+     * @return boolean
+     */
+    public function canInput(): boolean
+    {
+        return ($this->id !== null);
+    }
+
+    /**
      * @return string
      */
-    public function getAlertLevel(Carbon $date)
+    public function guideMessage(): string
     {
-        if (!$this->id) {
-            return '';
-        }
+        return sprintf('ただいま%sの入力期間です (%s)。', $this->name, $this->deadlineMessage());
+    }
 
+    private function deadlineMessage()
+    {
+        if ($this->alertLevel() !== 'danger') {
+            return sprintf('%sまで！', $this->end_at->format('Y-m-d H:i:s'));
+        }
+        return sprintf('残り%d時間！！', $this->remainingHours($this->end_at));
+    }
+
+    private function remainingHours($endAt)
+    {
+        $now = Carbon::now();
+        $diff = $now->diffInHours($this->end_at);
+
+        return $diff;
+    }
+
+    /**
+     * @return \App\AlertLevel
+     */
+    public function alertLevel(): AlertLevel
+    {
         $levels = [
-            ['threashold' => 168, 'label' => 'info'],
-            ['threashold' => 72, 'label' => 'warning'],
+            ['threashold' => 168, 'level' => AlertLevel::INFO],
+            ['threashold' => 72, 'level' => AlertLevel::WARN],
         ];
 
-        $diff = $date->diffInHours($this->end_at);
+        $diff = $this->remainingHours($this->end_at);
         foreach ($levels as $level) {
             if ($diff >= $level['threashold']) {
-                return $level['label'];
+                return new AlertLevel($level['level']);
             }
         }
-        return 'danger';
+        return new AlertLevel(AlertLevel::DANGER);
     }
 }
