@@ -22,7 +22,7 @@ class IndividualObjectiveRequest extends FormRequest
     public function rules()
     {
         return [
-            'parent_key_result' => 'required',
+            'parent_key_result_id' => 'required',
             'objective.subject' => 'required',
             'objective.description' => 'required',
             'key_result.subject' => 'required',
@@ -30,5 +30,14 @@ class IndividualObjectiveRequest extends FormRequest
             'key_result.target_value' => 'required|numeric',
             'key_result.target_unit' => 'required',
         ];
+    }
+
+    public function data()
+    {
+        $attrs = parent::data();
+        $attrs['objective']['parent_key_result_id'] = $attrs['parent_key_result_id'];
+        unset($attrs['parent_key_result_id']);
+
+        return $attrs;
     }
 }

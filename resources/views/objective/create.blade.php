@@ -22,8 +22,8 @@
             <ul class="list-group">
             @foreach ($parentKeyResults as $kr)
               <li class="list-group-item">
-                {!! Form::radio('parent_key_result', $kr->id, false, ['class' => 'form-inline', 'id' => 'parent_key_result_' . $kr->id]) !!}
-                {!! Form::label('parent_key_result_' . $kr->id, $kr->subject) !!}
+                {!! Form::radio('parent_key_result_id', $kr->id, false, ['class' => 'form-inline', 'id' => 'parent_key_result_id_' . $kr->id]) !!}
+                {!! Form::label('parent_key_result_id_' . $kr->id, $kr->subject) !!}
               </li>
             @endforeach
             </ul>
