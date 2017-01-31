@@ -5,7 +5,7 @@ namespace App\Test;
 use Mockery;
 use Carbon\Carbon;
 use App\InputPeriod;
-use App\OutsideOfPeriod;
+use App\OutsideOfInputPeriod;
 use App\Services\Timeline;
 
 class TimelineTest extends TestCase
@@ -33,20 +33,20 @@ class TimelineTest extends TestCase
     {
         if ($diff) {
             $now = Carbon::now();
-            $inputPeriod = new InputPeriod();
-            $inputPeriod->id = 1;
-            $inputPeriod->name = 'test';
-            $inputPeriod->start_at = $now->copy()->subDay();
-            $inputPeriod->end_at = $now->copy()->addHours($diff);
+            $period = new InputPeriod();
+            $period->id = 1;
+            $period->name = 'test';
+            $period->start_at = $now->copy()->subDay();
+            $period->end_at = $now->copy()->addHours($diff);
         } else {
-            $inputPeriod = new OutsideOfPeriod();
+            $period = new OutsideOfInputPeriod();
         }
         $mockInputPeriod = Mockery::mock('App\InputPeriod')->makePartial();
-        $mockInputPeriod->shouldReceive('current->first')->andReturn($inputPeriod);
+        $mockInputPeriod->shouldReceive('current->first')->andReturn($period);
 
         $timeline = new Timeline($mockInputPeriod);
-        $period = $timeline->currentPeriod();
-        $level = $period->alertLevel();
+        $currentPeriod = $timeline->currentPeriod();
+        $level = $currentPeriod->alertLevel();
         $this->assertEquals($expectedLevel, $level);
     }
 
