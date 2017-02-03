@@ -27,7 +27,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ route('admin.home') }}">
               {{ config('app.name', 'Laravel') }} - Admin
             </a>
           </div>
