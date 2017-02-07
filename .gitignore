@@ -6,4 +6,5 @@ Homestead.json
 Homestead.yaml
 .env
 .gitmodules
-/laradock/*
+/laradock
+.tags
