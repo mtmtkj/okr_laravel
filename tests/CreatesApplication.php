@@ -2,18 +2,10 @@
 
 namespace Tests;
 
-use Illuminate\Foundation\Testing\TestCase as ParentTestCase;
 use Illuminate\Contracts\Console\Kernel;
 
-abstract class TestCase extends ParentTestCase
+trait CreatesApplication
 {
-    /**
-     * The base URL to use while testing the application.
-     *
-     * @var string
-     */
-    protected $baseUrl = 'http://localhost';
-
     /**
      * Creates the application.
      *

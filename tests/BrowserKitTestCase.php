@@ -2,17 +2,17 @@
 
 namespace Tests;
 
-use Illuminate\Foundation\Testing\TestCase as ParentTestCase;
 use Illuminate\Contracts\Console\Kernel;
+use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
-abstract class TestCase extends ParentTestCase
+abstract class BrowserKitTestCase extends BaseTestCase
 {
     /**
-     * The base URL to use while testing the application.
+     * The base URL of the application.
      *
      * @var string
      */
-    protected $baseUrl = 'http://localhost';
+    public $baseUrl = 'http://localhost';
 
     /**
      * Creates the application.
