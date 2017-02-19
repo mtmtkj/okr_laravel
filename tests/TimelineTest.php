@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Test;
+namespace Tests;
 
 use Mockery;
 use Carbon\Carbon;
