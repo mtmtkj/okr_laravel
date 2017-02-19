@@ -10,6 +10,7 @@ class ExampleTest extends DuskTestCase
 {
     /**
      * A basic browser test example.
+     * @group browser
      *
      * @return void
      */
