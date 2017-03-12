@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Cache;
+use Carbon\Carbon;
 use App\InputPeriod;
 use App\OutsideOfInputPeriod;
 
@@ -46,7 +47,10 @@ class Timeline
         $cacheKey = 'Timeline.currentPeriod';
         return Cache::get($cacheKey, function () use ($cacheKey) {
             $current = $this->currentPeriodImpl();
-            Cache::forever($cacheKey, $current);
+            $minutesLeft = ($current->end_at)
+                ? floor(($current->end_at->timestamp - time()) / 60)
+                : 0; // forever
+            Cache::put($cacheKey, $current, $minutesLeft);
             return $current;
         });
     }
@@ -59,10 +63,15 @@ class Timeline
     protected function currentPeriodImpl()
     {
         $inputPeriod = $this->inputPeriodORM->current()->first();
-        if ($inputPeriod === null) {
-            return new OutsideOfInputPeriod();
+        if ($inputPeriod !== null) {
+            return $inputPeriod;
         }
-        return $inputPeriod;
+        $period = new OutsideOfInputPeriod();
+        $next = $this->inputPeriodORM->coming()->first();
+        if ($next !== null) {
+            $period->end_at = $next->start_at;
+        }
+        return $period;
     }
 
     /**

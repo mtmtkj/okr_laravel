@@ -45,6 +45,12 @@ class InputPeriod extends Model implements Period
             ->where('end_at', '>', $now);
     }
 
+    public function scopeComing($query)
+    {
+        $now = date('Y-m-d H:i:s');
+        return $query->where('start_at', '>', $now);
+    }
+
     /**
      * @return boolean
      */
