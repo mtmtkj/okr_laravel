@@ -5,4 +5,4 @@ linter:
       dir: app/
   phpmd:
     options:
-      rule: cleancode,codesize,controversial,design,naming,unusedcode
+      rule: cleancode,codesize,controversial,design,naming,unusedcode,phpmd.xml
