@@ -19,15 +19,17 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('objective', 'IndividualObjectiveController@create')->name('objective.create');
-    Route::post('objective', 'IndividualObjectiveController@store')->name('objective.store');
+    Route::group(['prefix' => 'individual', 'as' => 'individual.'], function () {
+        Route::get('objective/create', 'IndividualObjectiveController@create')->name('objective.create');
+        Route::post('objective/store', 'IndividualObjectiveController@store')->name('objective.store');
+    });
     Route::group(['prefix' => 'team/{team_id}', 'as' => 'team.'], function () {
         Route::get('/', 'TeamController@show')->name('show');
-        Route::get('objective', 'ObjectiveController@create')->name('objective.create');
-        Route::post('objective', 'ObjectiveController@store')->name('objective.store');
+        Route::get('objective', 'TeamObjectiveController@create')->name('objective.create');
+        Route::post('objective', 'TeamObjectiveController@store')->name('objective.store');
     });
     Route::group(['prefix' => 'objective/{id}', 'as' => 'objective.'], function () {
-        Route::get('/', 'ObjectiveController@show')->name('show');
+        Route::get('/', 'TeamObjectiveController@show')->name('show');
         Route::get('keyresult', 'KeyResultController@create')->name('keyresult.create');
         Route::post('keyresult', 'KeyResultController@store')->name('keyresult.store');
     });
