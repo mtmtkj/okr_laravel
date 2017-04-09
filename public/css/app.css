@@ -5769,4 +5769,7 @@ button.close {
 .list-striped > li:nth-of-type(odd) {
   background-color: #f5f9fa; }
 
+.content-home .add-okr-link {
+  margin-left: 1.0em; }
+
 /*# sourceMappingURL=app.css.map */

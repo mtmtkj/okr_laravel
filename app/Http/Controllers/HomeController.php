@@ -15,8 +15,9 @@ class HomeController extends Controller
     public function index()
     {
         $individual = Individual::with('teams')->where('user_id', Auth::user()->id)->first();
+        $keyResults = $individual->keyResults();
         $teams = $individual->teams;
 
-        return view('home')->with(compact('teams'));
+        return view('home')->with(compact('keyResults', 'teams'));
     }
 }

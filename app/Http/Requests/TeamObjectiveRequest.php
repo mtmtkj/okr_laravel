@@ -6,7 +6,7 @@ use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Team;
 
-class ObjectiveRequest extends FormRequest
+class TeamObjectiveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

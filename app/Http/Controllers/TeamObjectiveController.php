@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ObjectiveRequest;
+use App\Http\Requests\TeamObjectiveRequest;
 use App\Team;
 use App\Objective;
 
-class ObjectiveController extends Controller
+class TeamObjectiveController extends Controller
 {
     /**
      * Team に紐付いた Objective を作成するフォームを表示する
@@ -24,11 +24,11 @@ class ObjectiveController extends Controller
     /**
      * Objective を保存する
      *
-     * @param ObjectiveRequest $request Objective の属性を持つ FormRequest
+     * @param TeamObjectiveRequest $request Objective の属性を持つ FormRequest
      * @param int $teamId Objective に紐付ける Team の ID
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(ObjectiveRequest $request, $teamId)
+    public function store(TeamObjectiveRequest $request, $teamId)
     {
         $team = Team::findOrFail($teamId);
         $attrs = $request->except('_token');
