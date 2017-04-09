@@ -4,6 +4,9 @@ namespace App;
 
 class OutsideOfInputPeriod implements Period
 {
+    /** @var \Carbon\Carbon */
+    public $end_at;
+
     /**
      * @return boolean
      * @see Period
