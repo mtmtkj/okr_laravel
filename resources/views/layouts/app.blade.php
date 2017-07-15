@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'OKR') }}</title>
+    <title>{{ config('app.name', 'Stal') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -37,7 +37,7 @@
 
               <!-- Branding Image -->
               <a class="navbar-brand" href="{{ url('/home') }}">
-                {{ config('app.name', 'OKR') }}
+                {{ config('app.name', 'Stal') }}
               </a>
             </div>
 
