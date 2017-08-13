@@ -19,7 +19,7 @@ class HomeController extends Controller
         $keyResults = $individual->keyResults();
         $teams = $individual->teams;
         if ($teams->count() === 0) {
-            return view('join_team')->with(['teams' => Team::all()]);
+            return redirect()->route('team.join');
         }
         return view('home')->with(compact('keyResults', 'teams'));
     }

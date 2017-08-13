@@ -7,8 +7,11 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = require('jquery');
-require('bootstrap-sass');
+try {
+  window.$ = window.jQuery = require('jquery');
+
+  require('bootstrap-sass');
+} catch (e) {}
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -16,8 +19,10 @@ require('bootstrap-sass');
  * and simple, leaving you to focus on building your next great project.
  */
 
-// window.Vue = require('vue');
-// require('vue-resource');
+window.Vue = require('vue');
+axios = require('axios')
+VueAxios = require('vue-axios');
+window.Vue.use(VueAxios, axios);
 
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of
@@ -25,11 +30,15 @@ require('bootstrap-sass');
  * included with Laravel will automatically verify the header's value.
  */
 
-// Vue.http.interceptors.push((request, next) => {
-//     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
-
-//     next();
-// });
+window.Vue.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+const csrf_token = document.head.querySelector('meta[name="csrf-token"]');
+if (csrf_token) {
+    window.Vue.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrf_token.content;
+}
+const api_token = document.body.querySelector('input[name="api_token"]');
+if (api_token) {
+    window.Vue.axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.getAttribute('value');
+}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

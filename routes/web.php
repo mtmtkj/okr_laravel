@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('objective/create', 'IndividualObjectiveController@create')->name('objective.create');
         Route::post('objective/store', 'IndividualObjectiveController@store')->name('objective.store');
     });
+    Route::get('team/join', 'TeamController@joinForm')->name('team.join');
     Route::group(['prefix' => 'team/{team_id}', 'as' => 'team.'], function () {
         Route::get('/', 'TeamController@show')->name('show');
         Route::get('objective', 'TeamObjectiveController@create')->name('objective.create');
