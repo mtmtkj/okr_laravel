@@ -34,8 +34,9 @@ class Team extends Model
         $query->select('teams.*')
             ->selectRaw('CASE WHEN individual_team.individual_id THEN true ELSE false END as joined')
             ->leftJoin('individual_team', function ($join) use ($individualId) {
-            $join->on('individual_team.team_id', 'teams.id')
+                $join->on('individual_team.team_id', 'teams.id')
                 ->where('individual_team.individual_id', $individualId);
-        });
+            })
+        ;
     }
 }
