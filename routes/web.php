@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
         Route::group(['middleware' => ['admin']], function () {
-            Route::get('/', 'HomeController@index');
+            Route::get('/', 'HomeController@index')->name('home');
             Route::resource('input_periods', 'InputPeriodController');
             Route::resource('teams', 'TeamController', ['except' => ['show']]);
             Route::group(['prefix' => 'teams/{team_id}', 'as' => 'teams.'], function () {
