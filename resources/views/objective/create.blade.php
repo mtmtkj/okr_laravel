@@ -13,7 +13,7 @@
   @endif
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      {!! Form::open() !!}
+      {!! Form::open(['route' => ['individual.objective.store'], 'method' => 'POST']) !!}
       <div class="panel panel-default">
         <div class="panel-heading">Create your objective</div>
         <div class="panel-body">
