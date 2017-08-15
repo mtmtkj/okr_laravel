@@ -96,8 +96,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'current_password' => [
+            'same_password' => 'The :attribute is incorrect.',
         ],
     ],
 

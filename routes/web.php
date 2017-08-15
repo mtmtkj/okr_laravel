@@ -46,4 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
             });
         });
     });
+
+    Route::get('settings', 'SettingsController@edit')->name('settings.edit');
+    Route::post('settings', 'SettingsController@update')->name('settings.update');
 });
