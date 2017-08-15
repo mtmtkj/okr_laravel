@@ -4,5 +4,7 @@ linter:
       standard: PSR2
       dir: app/
   phpmd:
+    target:
+      - app
     options:
-      rule: cleancode,codesize,controversial,design,naming,unusedcode,phpmd.xml
+      rule: phpmd.xml

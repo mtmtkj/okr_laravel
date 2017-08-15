@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
@@ -15,7 +16,7 @@ class Team extends Model
      */
     public function individuals()
     {
-        return $this->belongsToMany('App\Individual')->with('user');
+        return $this->belongsToMany('App\Individual')->withTimestamps()->with('user');
     }
 
     /**
@@ -26,5 +27,16 @@ class Team extends Model
     public function objectives()
     {
         return $this->morphMany('App\Objective', 'ownable');
+    }
+
+    public function scopeWithJoined(Builder $query, $individualId)
+    {
+        $query->select('teams.*')
+            ->selectRaw('CASE WHEN individual_team.individual_id THEN true ELSE false END as joined')
+            ->leftJoin('individual_team', function ($join) use ($individualId) {
+                $join->on('individual_team.team_id', 'teams.id')
+                ->where('individual_team.individual_id', $individualId);
+            })
+        ;
     }
 }

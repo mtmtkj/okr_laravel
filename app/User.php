@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Auth\Events\Login;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -24,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 
     /**
@@ -35,5 +36,11 @@ class User extends Authenticatable
     public function individual()
     {
         return $this->hasOne('App\Individual');
+    }
+
+    public function handleLoginEvent(Login $event)
+    {
+        $event->user->api_token = str_random(60);
+        $event->user->save();
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Individual;
 use App\Team;
+use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
@@ -17,5 +19,10 @@ class TeamController extends Controller
         $team = Team::with('individuals')->findOrFail($id);
 
         return view('team.show')->with(compact('team'));
+    }
+
+    public function joinForm()
+    {
+        return view('team.join');
     }
 }
