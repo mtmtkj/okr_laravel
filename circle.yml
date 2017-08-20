@@ -1,4 +1,5 @@
 machine:
   php:
     version: 7.0.4
-
+  node:
+    version: 5.7

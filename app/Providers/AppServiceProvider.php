@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Dusk\DuskServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,10 +13,13 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @return void
+     * @SuppressWarnings("unused")
      */
     public function boot()
     {
-        //
+        Validator::extend('same_password', function ($attribute, $value, $parameters, $validator) {
+            return !Hash::check($value, $parameters[0]);
+        });
     }
 
     /**
