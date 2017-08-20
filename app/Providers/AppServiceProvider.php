@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @return void
+     * @SuppressWarnings("unused")
      */
     public function boot()
     {
