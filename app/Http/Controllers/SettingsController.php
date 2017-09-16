@@ -19,7 +19,7 @@ class SettingsController extends Controller
         $user->name = $name;
         $password = $request->input('new_password');
         if (!empty($password)) {
-            $user->password = $password;
+            $user->password = bcrypt($password);
         }
         $user->save();
 
