@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('local', 'testing')) {
             $this->app->register(DuskServiceProvider::class);
         }
-        $this->app->bind(Timeline::class, function ($app) {
+        $this->app->bind(Timeline::class, function () {
             return new Timeline(new InputPeriod());
         });
     }
