@@ -18,7 +18,7 @@ interface Period
     /**
      * 入力可能かどうかを返す
      *
-     * @return boolean
+     * @return bool
      */
-    public function canInput(): boolean;
+    public function canInput(): bool;
 }

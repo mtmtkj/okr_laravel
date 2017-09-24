@@ -77,10 +77,10 @@ class Timeline
     /**
      * 入力可能かどうかを返す (現在の期間に対し委譲する)
      *
-     * @return boolean
+     * @return bool
      */
-    public function canInput()
+    public function canInput(): bool
     {
-        return $this->currentInputPeriod()->canInput();
+        return $this->currentPeriod()->canInput();
     }
 }
