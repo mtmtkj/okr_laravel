@@ -1,3 +1,6 @@
+<?php
+use App\Services\Timeline;
+?>
 @extends('layouts.app')
 
 @section('content')
@@ -12,7 +15,11 @@
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-heading">Your OKR <a class="add-okr-link" href="{{ route('individual.objective.create') }}"><i class="glyphicon glyphicon-plus"></i></a></div>
+        <div class="panel-heading">Your OKR
+          @if (app(Timeline::class)->canInput())
+            <a class="add-okr-link" href="{{ route('individual.objective.create') }}"><i class="glyphicon glyphicon-plus"></i></a>
+          @endif
+        </div>
         <div class="panel-body">
           <ul class="list-group">
           @foreach ($keyResults as $keyResult)
