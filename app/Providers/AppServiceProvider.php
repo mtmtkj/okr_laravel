@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\InputPeriod;
+use App\Services\Timeline;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
@@ -32,5 +34,8 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('local', 'testing')) {
             $this->app->register(DuskServiceProvider::class);
         }
+        $this->app->bind(Timeline::class, function ($app) {
+            return new Timeline(new InputPeriod());
+        });
     }
 }
