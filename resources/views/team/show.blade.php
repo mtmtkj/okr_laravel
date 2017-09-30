@@ -1,3 +1,6 @@
+<?php
+use App\Services\Timeline;
+?>
 @extends('layouts.app')
 
 @section('content')
@@ -8,7 +11,9 @@
         <div class="panel-heading">{{ $team->name }}</div>
         <div class="panel-body">
           <h4>Objectives</h4>
-          <p><a href="{{ route('team.objective.create', $team->id) }}">Create a new objective</a></p>
+          @if (app(Timeline::class)->canInput())
+            <p><a href="{{ route('team.objective.create', $team->id) }}">Create a new objective</a></p>
+          @endif
           <ul class="list-group list-striped">
           @foreach ($team->objectives as $objective)
             <li class="list-group-item">
