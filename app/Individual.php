@@ -29,6 +29,11 @@ class Individual extends Model
         return $this->morphMany('App\Objective', 'ownable')->with('keyResults');
     }
 
+    public function organizations()
+    {
+        return $this->belongsToMany('App\Organization')->withTimestamps();
+    }
+
     /**
      * Individual に紐付く Team のリストを取得する
      *
