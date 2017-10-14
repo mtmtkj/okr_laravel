@@ -15,5 +15,6 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function () {
     Route::get('/team', 'TeamController@index');
+    Route::post('/team', 'TeamController@store');
     Route::post('/team/join', 'TeamController@join');
 });

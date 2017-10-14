@@ -9,7 +9,14 @@
           <div class="panel-body">
             {!! Form::hidden('individual_id', \Auth::user()->individual->id, ['id' => 'individual_id']) !!}
             {!! Form::hidden('api_token', \Auth::user()->api_token) !!}
-            <ul class="list-group">
+            <div v-if="teams.length === 0">
+              <h3>Create a new team</h3>
+              <div class="form-inline">
+                <input name="name" v-model="name" class="form-control" placeholder="team name">
+                <button class="btn btn-primary" v-on:click="createNewTeam">Create</button>
+              </div>
+            </div>
+            <ul v-else class="list-group">
               <li class="list-group-item" v-for="team in teams">
                 <div class="row">
                   <div class="col-lg-4">@{{ team.name }}</div>

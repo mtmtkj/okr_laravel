@@ -13,7 +13,12 @@ class TeamController extends Controller
     {
         $individualId = $request->input('individualId');
 
-        return Team::withJoined($individualId)->get()->keyBy('id');
+        return Team::withJoined($individualId)->get();
+    }
+
+    public function store(Request $request)
+    {
+        return Team::create($request->only(['name']));
     }
 
     public function join(Request $request)
