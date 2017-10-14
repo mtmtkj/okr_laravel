@@ -18,7 +18,18 @@ class TeamController extends Controller
 
     public function store(Request $request)
     {
-        return Team::create($request->only(['name']));
+        $individual = \Auth::user()->individual;
+
+        $team = new Team([
+            'name' => $request->input('name'),
+            'organization_id' => $individual->organizations()->first()->id,
+        ]);
+        \DB::transaction(function () use ($individual, $team) {
+            $team->save();
+            $individual->teams()->save($team);
+        });
+
+        return $team;
     }
 
     public function join(Request $request)

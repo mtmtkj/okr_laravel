@@ -24,12 +24,10 @@ const vm = new Vue({
       const teamId = document.getElementById('js-btn-join').getAttribute('data-id');
       this.axios.post('/api/team/join', {teamId: teamId})
         .then(function (res) {
-          if (res.data.status === 'ok') {
-            let team = this.teams.find(function (el) {
-              return el.id === parseInt(teamId);
-            });
-            team.joined = 1;
-          }
+          let team = this.teams.find(function (el) {
+            return el.id === parseInt(teamId);
+          });
+          team.joined = 1;
         }.bind(this))
     }
   }
