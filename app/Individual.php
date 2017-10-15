@@ -29,7 +29,22 @@ class Individual extends Model
         return $this->morphMany('App\Objective', 'ownable')->with('keyResults');
     }
 
-    public function organizations()
+    /**
+     * prevent from manipulating many-to-many relationship
+     *
+     * @return mixed
+     */
+    public function getOrganizationAttribute()
+    {
+        return $this->organizations()->first();
+    }
+
+    public function saveOrganization(Organization $organization)
+    {
+        return $this->organizations()->save($organization);
+    }
+
+    private function organizations()
     {
         return $this->belongsToMany('App\Organization')->withTimestamps();
     }

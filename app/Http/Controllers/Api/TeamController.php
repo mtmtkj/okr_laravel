@@ -22,7 +22,7 @@ class TeamController extends Controller
 
         $team = new Team([
             'name' => $request->input('name'),
-            'organization_id' => $individual->organizations()->first()->id,
+            'organization_id' => $individual->organization->id,
         ]);
         \DB::transaction(function () use ($individual, $team) {
             $team->save();
