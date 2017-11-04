@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container content-home">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+<div class="content-home">
+  <div class="row row-cards-pf">
+    <div class="col-lg-12">
       <div class="panel panel-default">
         <div class="panel-heading">Dashboard</div>
         <div class="panel-body">

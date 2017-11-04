@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div>
   @if (count($errors) > 0)
   <div class="alert alert-danger">
     <ul>
@@ -12,7 +12,7 @@
   </div>
   @endif
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-lg-12">
       {!! Form::open(['route' => ['individual.objective.store'], 'method' => 'POST']) !!}
       <div class="panel panel-default">
         <div class="panel-heading">Create your objective</div>
