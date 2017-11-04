@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="layout-pf layout-pf-fixed transitions">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,10 +20,10 @@
       ]); ?>
     </script>
   </head>
-  <body>
+  <body class="cards-pf">
     <div id="app">
       <header>
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-pf-vertical">
           <div class="container">
             <div class="navbar-header">
 
@@ -79,10 +79,34 @@
             </div>
           </div>
         </nav>
-      @include('partials.guide')
       </header>
+      <div class="nav-pf-vertical nav-pf-vertical-with-sub-menus nav-pf-persistent-secondary">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="/home">
+              <span class="fa fa-bar-chart" data-toggle="tooltip" title="" data-original-title="Dashboard"></span>
+              <span class="list-group-item-value">Dashboard</span>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              <span class="fa fa-building-o" data-toggle="tooltip" title="" data-original-title="Adipscing"></span>
+              <span class="list-group-item-value">Organization</span>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#">
+              <span class="fa fa-users" data-toggle="tooltip" title="" data-original-title="Lorem"></span>
+              <span class="list-group-item-value">Members</span>
+            </a>
+          </li>
+        </ul>
+      </div>
       <main>
-        @yield('content')
+        <div class="container-fluid container-cards-pf container-pf-nav-pf-vertical nav-pf-persistent-secondary hidden-icons-pf">
+          @include('partials.guide')
+          @yield('content')
+        </div>
       </main>
     </div>
 
