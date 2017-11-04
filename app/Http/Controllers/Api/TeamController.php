@@ -13,7 +13,23 @@ class TeamController extends Controller
     {
         $individualId = $request->input('individualId');
 
-        return Team::withJoined($individualId)->get()->keyBy('id');
+        return Team::withJoined($individualId)->get();
+    }
+
+    public function store(Request $request)
+    {
+        $individual = \Auth::user()->individual;
+
+        $team = new Team([
+            'name' => $request->input('name'),
+            'organization_id' => $individual->organization->id,
+        ]);
+        \DB::transaction(function () use ($individual, $team) {
+            $team->save();
+            $individual->teams()->save($team);
+        });
+
+        return $team;
     }
 
     public function join(Request $request)

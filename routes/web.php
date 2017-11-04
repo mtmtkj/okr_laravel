@@ -18,6 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'organization', 'as' => 'organization.'], function () {
+        Route::get('create', 'OrganizationController@create')->name('create');
+        Route::post('/', 'OrganizationController@store')->name('store');
+    });
+});
+
+Route::group(['middleware' => ['auth', 'has.organization']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::group(['prefix' => 'individual', 'as' => 'individual.'], function () {
         Route::get('objective/create', 'IndividualObjectiveController@create')->name('objective.create');
