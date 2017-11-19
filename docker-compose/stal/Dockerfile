@@ -41,16 +41,12 @@ RUN mv composer.phar /usr/local/bin/composer
 
 ## node.js,npm
 RUN yum -y install epel-release bzip2
-## npmのバグでこれを入れておかないとコケる
 RUN yum -y update openssl
 RUN yum-config-manager --enable cr
 RUN yum -y install nodejs npm
 RUN npm install -g n
-RUN n latest
+RUN n 8.4.0
 RUN npm update -g
-
-RUN npm install -g npm-check-updates
-RUN npm install -g yarn
 
 # 起動時実行コマンド
 CMD ["/sbin/init"]
