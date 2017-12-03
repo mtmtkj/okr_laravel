@@ -5,8 +5,8 @@
 // Variables
 @import "variables";
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// Materialize
+@import "node_modules/materialize-css/dist/css/materialize";
 
 .list-striped > li:nth-of-type(odd) {
   background-color: $list-bg-accent;
