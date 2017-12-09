@@ -9,5 +9,8 @@ Homestead.json
 Homestead.yaml
 .env
 .gitmodules
-/laradock
+/docker-compose/stal/log/nginx
+/docker-compose/stal/log/php-fpm
+/docker-compose/db
 .tags
+!.gitkeep
