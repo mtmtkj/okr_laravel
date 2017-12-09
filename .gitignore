@@ -11,3 +11,7 @@ Homestead.yaml
 .gitmodules
 /laradock
 .tags
+/docker-compose/stal/log/nginx/*
+/docker-compose/stal/log/php-fpm/*
+/docker-compose/db/*
+!.gitkeep

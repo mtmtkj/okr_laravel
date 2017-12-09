@@ -1,0 +1,28 @@
+version: '2'
+services:
+  stal:
+    container_name: stal
+    build: ./docker-compose/stal
+    ports:
+      - 80:80
+    links:
+      - "stal-db:stal-db"
+    volumes:
+      - ./:/var/www/html
+      - ./docker-compose/stal/log/nginx:/var/log/nginx
+      - ./docker-compose/stal/log/php-fpm:/var/log/php-fpm
+    environment:
+      TZ: "Asia/Tokyo"
+    command: /sbin/init
+    privileged: true
+  stal-db:
+    container_name: stal-db
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: "Asia/Tokyo"
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker-compose/db:/var/lib/mysql
+    privileged: true
