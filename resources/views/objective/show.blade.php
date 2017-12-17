@@ -18,7 +18,7 @@ use App\Services\Timeline;
       <div class="panel panel-default">
         <div class="panel-heading">Key Results</div>
         <div class="panel-body">
-          @if (app(Timeline::class)->canInput())
+          @if (app(Timeline::class)->canInput($ownerType))
             <p><a href="{{ route('objective.keyresult.create', $objective->id) }}">Create a new key result</a></p>
           @endif
           <ul class="list-group list-striped">

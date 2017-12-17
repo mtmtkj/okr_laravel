@@ -16,7 +16,7 @@ use App\Services\Timeline;
 
       <div class="panel panel-default">
         <div class="panel-heading">Your OKR
-          @if (app(Timeline::class)->canInput())
+          @if (app(Timeline::class)->canInput('individual'))
             <a class="add-okr-link" href="{{ route('individual.objective.create') }}"><i class="glyphicon glyphicon-plus"></i></a>
           @endif
         </div>

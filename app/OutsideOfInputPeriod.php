@@ -8,10 +8,11 @@ class OutsideOfInputPeriod implements Period
     public $end_at;
 
     /**
+     * @param  string $target
      * @return bool
      * @see Period
      */
-    public function canInput(): bool
+    public function canInput(string $target): bool
     {
         return false;
     }

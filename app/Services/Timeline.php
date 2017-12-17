@@ -79,8 +79,8 @@ class Timeline
      *
      * @return bool
      */
-    public function canInput(): bool
+    public function canInput(string $target): bool
     {
-        return $this->currentPeriod()->canInput();
+        return $this->currentPeriod()->canInput($target);
     }
 }

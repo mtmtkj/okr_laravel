@@ -11,7 +11,7 @@ use App\Services\Timeline;
         <div class="panel-heading">{{ $team->name }}</div>
         <div class="panel-body">
           <h4>Objectives</h4>
-          @if (app(Timeline::class)->canInput())
+          @if (app(Timeline::class)->canInput('team'))
             <p><a href="{{ route('team.objective.create', $team->id) }}">Create a new objective</a></p>
           @endif
           <ul class="list-group list-striped">
