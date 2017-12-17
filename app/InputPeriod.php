@@ -52,11 +52,12 @@ class InputPeriod extends Model implements Period
     }
 
     /**
-     * @return boolean
+     * @param  string $target
+     * @return bool
      */
-    public function canInput(): boolean
+    public function canInput(string $target): bool
     {
-        return ($this->id !== null);
+        return ($this->id !== null && $this->objective_owner_type === $target);
     }
 
     /**

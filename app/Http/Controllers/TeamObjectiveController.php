@@ -49,7 +49,8 @@ class TeamObjectiveController extends Controller
     {
         $objective = Objective::findOrFail($id);
         $owner = $objective->ownable;
+        $ownerType = 'team';
 
-        return view('objective.show')->with(compact('objective', 'owner'));
+        return view('objective.show')->with(compact('objective', 'owner', 'ownerType'));
     }
 }

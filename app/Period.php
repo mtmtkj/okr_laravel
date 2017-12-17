@@ -18,7 +18,8 @@ interface Period
     /**
      * 入力可能かどうかを返す
      *
-     * @return boolean
+     * @param  string $target
+     * @return bool
      */
-    public function canInput(): boolean;
+    public function canInput(string $target): bool;
 }
