@@ -45,8 +45,7 @@ RUN yum -y update openssl
 RUN yum-config-manager --enable cr
 RUN yum -y install nodejs npm
 RUN npm install -g n
-RUN n 8.4.0
-RUN npm update -g
+RUN n latest
 
 # 起動時実行コマンド
 CMD ["/sbin/init"]
