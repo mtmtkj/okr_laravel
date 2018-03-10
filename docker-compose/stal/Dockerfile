@@ -16,12 +16,12 @@ RUN systemctl enable nginx
 ## php
 RUN yum -y install epel-release
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-RUN yum -y install --enablerepo=remi,remi-php70 php php-devel php-mbstring php-pdo php-gd php-mysql php-mcrypt php-xdebug php-xml php-zip
+RUN yum -y install --enablerepo=remi,remi-php71 php php-devel php-mbstring php-pdo php-gd php-mysql php-mcrypt php-xdebug php-xml php-zip
 RUN mv /etc/php.ini /etc/php.ini.bk
 ADD php.ini /etc/php.ini
 
 ## php-fpm
-RUN yum -y install php-fpm --enablerepo=epel --enablerepo=remi --enablerepo=remi-php70
+RUN yum -y install php-fpm --enablerepo=epel --enablerepo=remi --enablerepo=remi-php71
 RUN mv /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf.bk
 RUN systemctl enable php-fpm
 ADD www.conf /etc/php-fpm.d/www.conf
