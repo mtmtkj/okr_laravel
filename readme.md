@@ -1,5 +1,10 @@
 # OKR app
 
+## Requirements
+
+- PHP 7.1
+- MySQL 5.7
+
 ## Getting started
 
 ```console
