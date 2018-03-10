@@ -56,9 +56,11 @@ class KeyResult extends Model
     public function scopeBelongsToTeamsOfIndividual(Builder $query, Individual $individual)
     {
         return $query->whereHas('objective', function ($query) use ($individual) {
-            $query->where('ownable_type', 'App\Models\Team')->whereIn('ownable_id', $individual->teams->map(function ($team) {
-                return $team->id;
-            }));
+            $query->where('ownable_type', 'App\Models\Team')
+                ->whereIn('ownable_id', $individual->teams->map(function ($team) {
+                    return $team->id;
+                }))
+            ;
         });
     }
 }
