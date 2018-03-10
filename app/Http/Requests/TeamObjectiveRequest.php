@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Team;
+use App\Models\Team;
 
 class TeamObjectiveRequest extends FormRequest
 {

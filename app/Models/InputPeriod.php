@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Cache;
 use Carbon\Carbon;
@@ -84,7 +84,7 @@ class InputPeriod extends Model implements Period
     }
 
     /**
-     * @return \App\AlertLevel
+     * @return \App\Models\AlertLevel
      */
     public function alertLevel(): AlertLevel
     {

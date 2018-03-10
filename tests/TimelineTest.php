@@ -4,8 +4,8 @@ namespace Tests;
 
 use Mockery;
 use Carbon\Carbon;
-use App\InputPeriod;
-use App\OutsideOfInputPeriod;
+use App\Models\InputPeriod;
+use App\Models\OutsideOfInputPeriod;
 use App\Services\Timeline;
 
 class TimelineTest extends TestCase
@@ -19,7 +19,7 @@ class TimelineTest extends TestCase
         $inputPeriod->start_at = $now->copy()->subDays(2);
         $inputPeriod->end_at = $now->copy()->subDay();
 
-        $mockInputPeriod = Mockery::mock('App\InputPeriod')->makePartial();
+        $mockInputPeriod = Mockery::mock('App\Models\InputPeriod')->makePartial();
         $mockInputPeriod->shouldReceive('current->first')->andReturn($inputPeriod);
 
         $timeline = new Timeline($mockInputPeriod);
@@ -41,7 +41,7 @@ class TimelineTest extends TestCase
         } else {
             $period = new OutsideOfInputPeriod();
         }
-        $mockInputPeriod = Mockery::mock('App\InputPeriod')->makePartial();
+        $mockInputPeriod = Mockery::mock('App\Models\InputPeriod')->makePartial();
         $mockInputPeriod->shouldReceive('current->first')->andReturn($period);
 
         $timeline = new Timeline($mockInputPeriod);
@@ -70,7 +70,7 @@ class TimelineTest extends TestCase
         $inputPeriod->start_at = $now->copy()->subDays(2);
         $inputPeriod->end_at = $now->copy()->subDay();
 
-        $mockInputPeriod = Mockery::mock('App\InputPeriod')->makePartial();
+        $mockInputPeriod = Mockery::mock('App\Models\InputPeriod')->makePartial();
         $mockInputPeriod->shouldReceive('current->first')->andReturn($inputPeriod);
 
         $timeline = new Timeline($mockInputPeriod);
@@ -96,7 +96,7 @@ class TimelineTest extends TestCase
         $inputPeriod->start_at = $now->copy()->addDay();
         $inputPeriod->end_at = $now->copy()->addDays(2);
 
-        $mockInputPeriod = Mockery::mock('App\InputPeriod')->makePartial();
+        $mockInputPeriod = Mockery::mock('App\Models\InputPeriod')->makePartial();
         $mockInputPeriod->shouldReceive('current->first')->andReturn(null);
         $mockInputPeriod->shouldReceive('coming->first')->andReturn($inputPeriod);
 

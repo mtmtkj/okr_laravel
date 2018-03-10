@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Admin;
-use App\Individual;
-use App\User;
+use App\Models\Admin;
+use App\Models\Individual;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class MakeAdminCommand extends Command

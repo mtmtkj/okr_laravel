@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App;
+namespace App\Models;
 
 interface Period
 {
@@ -11,7 +11,7 @@ interface Period
     public function guideMessage(): string;
 
     /**
-     * @return \App\AlertLevel
+     * @return \App\Models\AlertLevel
      */
     public function alertLevel(): AlertLevel;
 

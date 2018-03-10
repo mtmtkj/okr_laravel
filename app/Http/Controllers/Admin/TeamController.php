@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TeamRequest;
-use App\Team;
+use App\Models\Team;
 
 class TeamController extends Controller
 {

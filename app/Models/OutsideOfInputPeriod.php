@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 class OutsideOfInputPeriod implements Period
 {
@@ -26,7 +26,7 @@ class OutsideOfInputPeriod implements Period
     }
 
     /**
-     * @return \App\AlertLevel
+     * @return \App\Models\AlertLevel
      * @see Period
      */
     public function alertLevel(): AlertLevel

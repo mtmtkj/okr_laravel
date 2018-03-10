@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Individual;
-use App\Team;
+use App\Models\Individual;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

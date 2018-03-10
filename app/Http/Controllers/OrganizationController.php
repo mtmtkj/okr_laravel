@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateOrganizationRequest;
-use App\Organization;
+use App\Models\Organization;
 
 class OrganizationController extends Controller
 {

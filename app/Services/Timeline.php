@@ -4,8 +4,8 @@ namespace App\Services;
 
 use Cache;
 use Carbon\Carbon;
-use App\InputPeriod;
-use App\OutsideOfInputPeriod;
+use App\Models\InputPeriod;
+use App\Models\OutsideOfInputPeriod;
 
 class Timeline
 {

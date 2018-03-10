@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Notifications\Notifiable;
@@ -35,7 +35,7 @@ class User extends Authenticatable
      */
     public function individual()
     {
-        return $this->hasOne('App\Individual');
+        return $this->hasOne('App\Models\Individual');
     }
 
     public function handleLoginEvent(Login $event)

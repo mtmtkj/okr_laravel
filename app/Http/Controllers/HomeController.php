@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Team;
 use Auth;
-use App\Individual;
+use App\Models\Individual;
 
 class HomeController extends Controller
 {

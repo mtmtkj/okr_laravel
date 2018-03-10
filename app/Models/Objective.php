@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,6 +25,6 @@ class Objective extends Model
      */
     public function keyResults()
     {
-        return $this->hasMany('App\KeyResult');
+        return $this->hasMany('App\Models\KeyResult');
     }
 }

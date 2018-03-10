@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use DB;
 use App\Http\Requests\IndividualObjectiveRequest;
-use App\KeyResult;
-use App\Individual;
-use App\Objective;
+use App\Models\KeyResult;
+use App\Models\Objective;
 
 class IndividualObjectiveController extends Controller
 {
