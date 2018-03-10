@@ -50,5 +50,12 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist"
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "laravel/dusk"
+            ]
+        }
     }
 }
