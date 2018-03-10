@@ -78,7 +78,7 @@ class InputPeriod extends Model implements Period
     private function remainingHours($endAt)
     {
         $now = Carbon::now();
-        $diff = $now->diffInHours($this->end_at);
+        $diff = $now->diffInHours($endAt);
 
         return $diff;
     }
