@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +16,7 @@ class Team extends Model
      */
     public function individuals()
     {
-        return $this->belongsToMany('App\Individual')->withTimestamps()->with('user');
+        return $this->belongsToMany('App\Models\Individual')->withTimestamps()->with('user');
     }
 
     /**
@@ -26,7 +26,7 @@ class Team extends Model
      */
     public function objectives()
     {
-        return $this->morphMany('App\Objective', 'ownable');
+        return $this->morphMany('App\Models\Objective', 'ownable');
     }
 
     public function scopeWithJoined(Builder $query, $individualId)

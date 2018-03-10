@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Cache;
 use Carbon\Carbon;
@@ -78,13 +78,13 @@ class InputPeriod extends Model implements Period
     private function remainingHours($endAt)
     {
         $now = Carbon::now();
-        $diff = $now->diffInHours($this->end_at);
+        $diff = $now->diffInHours($endAt);
 
         return $diff;
     }
 
     /**
-     * @return \App\AlertLevel
+     * @return \App\Models\AlertLevel
      */
     public function alertLevel(): AlertLevel
     {

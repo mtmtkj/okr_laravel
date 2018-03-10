@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,7 +21,7 @@ class KeyResult extends Model
      */
     public function objective()
     {
-        return $this->belongsTo('App\Objective');
+        return $this->belongsTo('App\Models\Objective');
     }
 
     /**
@@ -31,7 +31,7 @@ class KeyResult extends Model
      */
     public function fulfillment_progresses()
     {
-        return $this->hasMany('App\FulfillmentProgress');
+        return $this->hasMany('App\Models\FulfillmentProgress');
     }
 
     /**
@@ -44,7 +44,7 @@ class KeyResult extends Model
         if ($this->fulfilled !== null) {
             return $this->fulfilled;
         }
-        $relation = $this->hasMany('App\FulfillmentProgress');
+        $relation = $this->hasMany('App\Models\FulfillmentProgress');
         $fulfillmentProgress = $relation->getRelated();
 
         $fulfilled = $fulfillmentProgress->currentFulfillment($this);
@@ -56,9 +56,11 @@ class KeyResult extends Model
     public function scopeBelongsToTeamsOfIndividual(Builder $query, Individual $individual)
     {
         return $query->whereHas('objective', function ($query) use ($individual) {
-            $query->where('ownable_type', 'App\Team')->whereIn('ownable_id', $individual->teams->map(function ($team) {
-                return $team->id;
-            }));
+            $query->where('ownable_type', 'App\Models\Team')
+                ->whereIn('ownable_id', $individual->teams->map(function ($team) {
+                    return $team->id;
+                }))
+            ;
         });
     }
 }

@@ -17,7 +17,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\EventListener',
         ],
         'Illuminate\Auth\Events\Login' => [
-            'App\User@handleLoginEvent',
+            'App\Models\User@handleLoginEvent',
         ],
     ];
 

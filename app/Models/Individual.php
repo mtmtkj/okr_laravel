@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -16,7 +16,7 @@ class Individual extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     /**
@@ -26,7 +26,7 @@ class Individual extends Model
      */
     public function objectives()
     {
-        return $this->morphMany('App\Objective', 'ownable')->with('keyResults');
+        return $this->morphMany('App\Models\Objective', 'ownable')->with('keyResults');
     }
 
     /**
@@ -46,7 +46,7 @@ class Individual extends Model
 
     private function organizations()
     {
-        return $this->belongsToMany('App\Organization')->withTimestamps();
+        return $this->belongsToMany('App\Models\Organization')->withTimestamps();
     }
 
     /**
@@ -56,7 +56,7 @@ class Individual extends Model
      */
     public function teams()
     {
-        return $this->belongsToMany('App\Team')->withTimestamps();
+        return $this->belongsToMany('App\Models\Team')->withTimestamps();
     }
 
     /**

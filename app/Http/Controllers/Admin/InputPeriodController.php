@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\InputPeriodRequest;
-use App\InputPeriod;
-use App\ObjectiveOwnerTypes;
+use App\Models\InputPeriod;
+use App\Models\ObjectiveOwnerTypes;
 
 class InputPeriodController extends Controller
 {

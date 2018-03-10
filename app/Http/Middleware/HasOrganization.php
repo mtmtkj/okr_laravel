@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Organization;
+use App\Models\Organization;
 use Closure;
 
 class HasOrganization

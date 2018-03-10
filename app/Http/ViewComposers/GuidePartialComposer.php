@@ -2,20 +2,18 @@
 
 namespace App\Http\ViewComposers;
 
-use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use App\Services\Timeline;
-use App\InputPeriod;
 
 class GuidePartialComposer
 {
     /**
-     * @var \App\Timeline
+     * @var \App\Services\Timeline
      */
     private $timeline;
 
     /**
-     * @param \App\Timeline
+     * @param \App\Services\Timeline
      */
     public function __construct(Timeline $timeline)
     {

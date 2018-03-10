@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\KeyResultRequest;
-use App\Objective;
-use App\KeyResult;
+use App\Models\Objective;
+use App\Models\KeyResult;
 
 class KeyResultController extends Controller
 {

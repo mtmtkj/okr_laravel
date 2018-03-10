@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TeamObjectiveRequest;
-use App\Team;
-use App\Objective;
+use App\Models\Team;
+use App\Models\Objective;
 
 class TeamObjectiveController extends Controller
 {
