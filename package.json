@@ -11,10 +11,10 @@
     "axios": "^0.15.3",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^3.2.3",
-    "jquery": "^3.1.1",
-    "laravel-mix": "^1.0",
-    "lodash": "^4.17.4",
-    "vue": "^2.1.10",
+    "jquery": "^3.3.1",
+    "laravel-mix": "^1.7.2",
+    "lodash": "^4.17.5",
+    "vue": "^2.5.14",
     "vue-axios": "^2.0.2"
   }
 }
